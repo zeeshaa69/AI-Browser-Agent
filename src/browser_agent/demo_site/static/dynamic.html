@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dynamic · Acme Demo</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site">
+  <span class="brand">Acme Demo</span>
+  <nav aria-label="Main">
+    <a href="index.html" data-volatile="nav-home">Home</a>
+    <a href="products.html" data-volatile="nav-products">Products</a>
+    <a href="pricing.html" data-volatile="nav-pricing">Pricing</a>
+    <a href="contact.html" data-volatile="nav-contact">Contact</a>
+    <a href="account.html" data-volatile="nav-account">Account</a>
+  </nav>
+</header>
+<main>
+<h1>Dynamic content</h1>
+<p>Elements here appear late or change while you look at them.</p>
+<button type="button" id="reveal">Reveal secret</button>
+<p id="late-box" class="muted">Waiting for late content…</p>
+<button type="button" id="flip" data-volatile="flip">Toggle</button> <span id="flip-state" role="status">off</span>
+<script>
+window.pageInit = function () {
+  setTimeout(function () {
+    var b = document.createElement("button");
+    b.type = "button"; b.id = "late-button"; b.textContent = "Late button";
+    b.addEventListener("click", function () { document.getElementById("late-box").textContent = "Late button clicked"; });
+    document.querySelector("main").appendChild(b);
+  }, 800);
+  document.getElementById("reveal").addEventListener("click", function () {
+    document.getElementById("late-box").textContent = "The secret word is: marmalade";
+  });
+  document.getElementById("flip").addEventListener("click", function () {
+    var s = document.getElementById("flip-state");
+    s.textContent = s.textContent === "off" ? "on" : "off";
+  });
+};
+</script>
+</main>
+<footer>Local demo website for testing the browser agent. Nothing here is real.</footer>
+<script src="app.js"></script>
+</body>
+</html>

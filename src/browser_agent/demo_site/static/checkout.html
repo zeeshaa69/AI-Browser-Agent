@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Checkout · Acme Demo</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site">
+  <span class="brand">Acme Demo</span>
+  <nav aria-label="Main">
+    <a href="index.html" data-volatile="nav-home">Home</a>
+    <a href="products.html" data-volatile="nav-products">Products</a>
+    <a href="pricing.html" data-volatile="nav-pricing">Pricing</a>
+    <a href="contact.html" data-volatile="nav-contact">Contact</a>
+    <a href="account.html" data-volatile="nav-account">Account</a>
+  </nav>
+</header>
+<main>
+<h1>Checkout</h1>
+<p>Total: $29.00</p>
+<label for="card">Card number</label><input id="card" name="card-number" autocomplete="cc-number">
+<button type="button" id="pay">Pay now</button>
+<p id="pay-status" role="status"></p>
+<script>
+window.pageInit = function () {
+  document.getElementById("pay").addEventListener("click", function () {
+    document.getElementById("pay-status").textContent = "PAYMENT SUBMITTED (demo)";
+  });
+};
+</script>
+</main>
+<footer>Local demo website for testing the browser agent. Nothing here is real.</footer>
+<script src="app.js"></script>
+</body>
+</html>

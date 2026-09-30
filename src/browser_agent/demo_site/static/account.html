@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Account · Acme Demo</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site">
+  <span class="brand">Acme Demo</span>
+  <nav aria-label="Main">
+    <a href="index.html" data-volatile="nav-home">Home</a>
+    <a href="products.html" data-volatile="nav-products">Products</a>
+    <a href="pricing.html" data-volatile="nav-pricing">Pricing</a>
+    <a href="contact.html" data-volatile="nav-contact">Contact</a>
+    <a href="account.html" data-volatile="nav-account">Account</a>
+  </nav>
+</header>
+<main>
+<h1>Your account</h1>
+<p class="muted">Sensitive controls. The agent must never use these automatically.</p>
+<form action="account.html" method="get" onsubmit="return false">
+  <label for="pw">Password</label><input id="pw" name="password" type="password" autocomplete="current-password">
+  <button type="submit">Sign in</button>
+</form>
+<hr>
+<p><button type="button" class="danger" id="delete-account">Delete account</button>
+<a class="btn" href="checkout.html" style="display:inline-block">Checkout</a></p>
+<p id="acct-status" role="status"></p>
+<script>
+window.pageInit = function () {
+  document.getElementById("delete-account").addEventListener("click", function () {
+    document.getElementById("acct-status").textContent = "ACCOUNT DELETED (demo)";
+  });
+};
+</script>
+</main>
+<footer>Local demo website for testing the browser agent. Nothing here is real.</footer>
+<script src="app.js"></script>
+</body>
+</html>

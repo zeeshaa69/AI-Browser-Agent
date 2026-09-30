@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pricing · Acme Demo</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site">
+  <span class="brand">Acme Demo</span>
+  <nav aria-label="Main">
+    <a href="index.html" data-volatile="nav-home">Home</a>
+    <a href="products.html" data-volatile="nav-products">Products</a>
+    <a href="pricing.html" data-volatile="nav-pricing">Pricing</a>
+    <a href="contact.html" data-volatile="nav-contact">Contact</a>
+    <a href="account.html" data-volatile="nav-account">Account</a>
+  </nav>
+</header>
+<main>
+<h1>Pricing</h1>
+<p class="muted">Simple monthly plans. Prices shown in USD.</p>
+<p id="loading" role="status">Loading plans…</p>
+<table id="pricing-table" class="hidden" data-testid="pricing-table">
+  <thead><tr><th>Plan</th><th>Price</th><th>Seats</th><th>Support</th></tr></thead>
+  <tbody></tbody>
+</table>
+<div class="cards">
+  <div class="card"><h3>Starter</h3><button type="button">Buy Starter</button></div>
+  <div class="card"><h3>Pro</h3><button type="button">Buy Pro</button></div>
+</div>
+<script>
+window.pageInit = function () {
+  // Plans arrive asynchronously to exercise waiting / dynamic content.
+  setTimeout(function () {
+    var plans = [
+      ["Starter", "$9 / month", "1", "Community"],
+      ["Pro", "$29 / month", "5", "Email"],
+      ["Team", "$99 / month", "25", "Priority email"],
+      ["Enterprise", "Custom", "Unlimited", "Dedicated manager"]
+    ];
+    var body = document.querySelector("#pricing-table tbody");
+    plans.forEach(function (p) {
+      var tr = document.createElement("tr");
+      p.forEach(function (c) { var td = document.createElement("td"); td.textContent = c; tr.appendChild(td); });
+      body.appendChild(tr);
+    });
+    document.getElementById("loading").classList.add("hidden");
+    document.getElementById("pricing-table").classList.remove("hidden");
+  }, 400);
+};
+</script>
+</main>
+<footer>Local demo website for testing the browser agent. Nothing here is real.</footer>
+<script src="app.js"></script>
+</body>
+</html>

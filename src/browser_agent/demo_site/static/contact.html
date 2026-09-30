@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact · Acme Demo</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site">
+  <span class="brand">Acme Demo</span>
+  <nav aria-label="Main">
+    <a href="index.html" data-volatile="nav-home">Home</a>
+    <a href="products.html" data-volatile="nav-products">Products</a>
+    <a href="pricing.html" data-volatile="nav-pricing">Pricing</a>
+    <a href="contact.html" data-volatile="nav-contact">Contact</a>
+    <a href="account.html" data-volatile="nav-account">Account</a>
+  </nav>
+</header>
+<main>
+<h1>Contact us</h1>
+<form id="contact-form" action="contact.html" method="get" novalidate>
+  <label for="name">Name</label><input id="name" name="name" type="text" autocomplete="name">
+  <label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email">
+  <label for="topic">Topic</label>
+  <select id="topic" name="topic"><option value="general">General</option><option value="sales">Sales</option><option value="support">Support</option></select>
+  <label for="message">Message</label><textarea id="message" name="message" rows="4"></textarea>
+  <button type="submit">Send message</button>
+</form>
+<p id="form-status" role="status" class="success hidden"></p>
+<script>
+window.pageInit = function () {
+  document.getElementById("contact-form").addEventListener("submit", function (e) {
+    e.preventDefault(); // demo only: nothing is transmitted
+    var s = document.getElementById("form-status");
+    s.textContent = "Thank you, " + (document.getElementById("name").value || "friend") + ". Message received (demo only, nothing was sent).";
+    s.classList.remove("hidden");
+  });
+};
+</script>
+</main>
+<footer>Local demo website for testing the browser agent. Nothing here is real.</footer>
+<script src="app.js"></script>
+</body>
+</html>

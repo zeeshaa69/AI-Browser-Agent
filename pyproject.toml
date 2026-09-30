@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "browser-agent"
+version = "0.1.0"
+description = "A local, safety-controlled browser agent: structured plans, Playwright execution, verification and recovery. No cloud AI required."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+  "playwright>=1.49,<2",
+  "pydantic>=2.5,<3",
+  "fastapi>=0.110",
+  "uvicorn>=0.27",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "httpx>=0.27"]
+
+[project.scripts]
+browser-agent = "browser_agent.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+browser_agent = ["demo_site/static/*", "ui_dist/*", "ui_dist/assets/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+  "browser: launches a real Chromium via Playwright",
+  "e2e: end-to-end run against the local demo site",
+]
+addopts = "-ra"
